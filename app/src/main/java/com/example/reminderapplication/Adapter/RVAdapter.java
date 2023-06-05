@@ -1,5 +1,6 @@
 package com.example.reminderapplication.Adapter;
 
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.reminderapplication.R;
 import com.example.reminderapplication.RDB.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,7 +34,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
         entity model=data.get(position);
         holder.ReminderDetails.setText(model.getReminderdetails());
         Date date=new Date(model.getAlaramtime());
-//        String.format("%02d",date.toString());
         holder.time.setText(date.toString());
     }
 

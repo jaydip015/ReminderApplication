@@ -1,5 +1,6 @@
 package com.example.reminderapplication;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             int position=viewHolder.getAdapterPosition();
             entity model=Data.get(position);
             Log.d("tag", String.valueOf(model.getAid()));
-//            RemoveFromManager(model.getAid());
+            RemoveFromManager(model.getAid(),model.getReminderdetails());
             dao.deleteAlarm(model.getAid());
             adapter.notifyItemRemoved(position);
             Data.remove(position);
@@ -103,16 +104,17 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    private void RemoveFromManager(int id) {
+    public void RemoveFromManager(int id,String remindername) {
         manager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent=new Intent(MainActivity.this, reiciver.class);
+        Intent intent= new Intent(this, reiciver.class);
+        intent.setAction("com.example.ALARM_TRIGGERED");
+        intent.putExtra("notificationname",remindername);
+        intent.putExtra("id",id);
         pendingIntent= PendingIntent.getBroadcast(this,id,intent,PendingIntent.FLAG_MUTABLE);
         manager.cancel(pendingIntent);
         pendingIntent.cancel();
         Toast.makeText(this, "Alarm Removed Successfully", Toast.LENGTH_SHORT).show();
     }
-
-
     private void requestpermission() {
 
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.TIRAMISU){

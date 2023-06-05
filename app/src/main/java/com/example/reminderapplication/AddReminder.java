@@ -89,13 +89,11 @@ public class AddReminder extends AppCompatActivity {
     private void setalarm(int id) {
         manager= (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-        Intent intent=new Intent(AddReminder.this, reiciver.class);
+        Intent intent=new Intent(this, reiciver.class);
         intent.setAction("com.example.ALARM_TRIGGERED");
-//        intent.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
         intent.putExtra("notificationname",reminderDetails.getText().toString());
         intent.putExtra("id",id);
         pendingIntent= PendingIntent.getBroadcast(this,id,intent,PendingIntent.FLAG_MUTABLE);
-        Log.d("tag", String.valueOf(id));
         date=new Date(calendar.getTimeInMillis());
         Toast.makeText(this, date.toString(), Toast.LENGTH_SHORT).show();
         manager.setExact(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
