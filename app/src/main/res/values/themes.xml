@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ReminderApplication" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.ReminderApplication" parent="Base.Theme.ReminderApplication" />
+
+    <style name="AlertDialogTheme" parent="Theme.Material3.DayNight.Dialog.Alert"/>
+</resources>
