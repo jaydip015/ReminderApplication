@@ -12,6 +12,8 @@ import androidx.room.Room;
 import android.Manifest;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -39,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     DAO dao;
     AlarmManager manager;
     PendingIntent pendingIntent;
+
+    private int appwidgetId= AppWidgetManager.INVALID_APPWIDGET_ID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
             int position=viewHolder.getAdapterPosition();
             entity model=Data.get(position);
             Log.d("tag", String.valueOf(model.getAid()));
+            UpdateWidget();
             RemoveFromManager(model.getAid(),model.getReminderdetails());
             dao.deleteAlarm(model.getAid());
             adapter.notifyItemRemoved(position);
@@ -91,7 +97,16 @@ public class MainActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
         }
     };
+    public void  UpdateWidget(){
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
+        Intent updateIntent = new Intent(this, AppWidget.class);
+        updateIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, AppWidget.class));
+        updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
+        sendBroadcast(updateIntent);
 
+
+    }
     @Override
     protected void onRestart() {
         super.onRestart();

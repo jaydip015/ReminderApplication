@@ -1,6 +1,8 @@
 package com.example.reminderapplication;
 
 import android.app.Service;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
@@ -26,7 +28,7 @@ public class CompleteReminder extends Service {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.d("tag", String.valueOf(intent.getIntExtra("id",0)));
+                UpdateWidget();
                 dao.alaramComplete(intent.getIntExtra("id",0));
             }
         }).start();
@@ -34,7 +36,16 @@ public class CompleteReminder extends Service {
         return START_NOT_STICKY;
     }
 
+    public void  UpdateWidget(){
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
+        Intent updateIntent = new Intent(this, AppWidget.class);
+        updateIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, AppWidget.class));
+        updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
+        sendBroadcast(updateIntent);
 
+
+    }
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {

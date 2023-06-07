@@ -1,0 +1,27 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Widget.ReminderApplication.AppWidget.Container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+
+    android:theme="@style/Theme.ReminderApplication.AppWidgetContainer">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reminder List"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+<ListView
+    android:id="@+id/Reminder_ListView"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:listitem="@layout/card_view_widget"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+</LinearLayout>

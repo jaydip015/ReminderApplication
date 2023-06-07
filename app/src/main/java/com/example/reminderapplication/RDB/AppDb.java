@@ -13,7 +13,7 @@ public abstract  class AppDb extends RoomDatabase {
     public static synchronized AppDb getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDb.class, "Reminder")
+                            AppDb.class, "Reminder").allowMainThreadQueries()
                     .build();
         }
         return instance;

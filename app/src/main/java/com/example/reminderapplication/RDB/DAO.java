@@ -18,6 +18,9 @@ public interface DAO {
     @Query("SELECT * FROM entity")
     List<entity> getalldata();
 
+    @Query("SELECT reminderdetails FROM entity ")
+    String [] ReminderNames();
+
     @Query("delete from entity where alarmid=:id")
     void alaramComplete(int id);
 

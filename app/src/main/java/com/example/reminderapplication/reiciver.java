@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.widget.RemoteViews;
+import android.widget.RemoteViewsService;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
@@ -39,5 +41,6 @@ public class reiciver extends BroadcastReceiver {
             notificationManagerCompat.notify(notificationid,builder.build());
         }
     }
+
 
 }
