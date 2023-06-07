@@ -122,10 +122,17 @@ public class AddReminder extends AppCompatActivity {
         materialDateBuilder.setTitleText("SELECT A DATE");
         final MaterialDatePicker materialDatePicker = materialDateBuilder.build();
         materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER");
+
         materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onPositiveButtonClick(Object selection) {
+                Calendar cal=Calendar.getInstance();
+                cal.setTimeInMillis((Long) selection);
+                int selectedYear = cal.get(Calendar.YEAR);
+                int selectedMonth = cal.get(Calendar.MONTH);
+                int selectedDayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+                calendar.set(selectedYear,selectedMonth,selectedDayOfMonth);
                 ShowTime.setText(materialDatePicker.getHeaderText());
             }
         });
