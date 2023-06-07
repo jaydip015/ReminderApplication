@@ -25,6 +25,7 @@ public class CompleteReminder extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -32,6 +33,9 @@ public class CompleteReminder extends Service {
                 dao.alaramComplete(intent.getIntExtra("id",0));
             }
         }).start();
+        Intent i=new Intent(this, MainActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
         stopSelf();
         return START_NOT_STICKY;
     }
