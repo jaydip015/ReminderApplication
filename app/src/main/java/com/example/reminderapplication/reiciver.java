@@ -1,6 +1,7 @@
 package com.example.reminderapplication;
 
 import android.Manifest;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +21,9 @@ public class reiciver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        Intent openscreen = new Intent(context, MainActivity.class);
+        openscreen.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 1, openscreen, PendingIntent.FLAG_IMMUTABLE);
 
 
         id=intent.getIntExtra("id",0);
@@ -30,6 +34,7 @@ public class reiciver extends BroadcastReceiver {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "testing").
                 setSmallIcon(R.drawable.ic_launcher_background).
                 setContentTitle(intent.getStringExtra("notificationname")).setContentText("You have Report scheduled ").setAutoCancel(true).setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
         int notificationid=1;
@@ -41,6 +46,4 @@ public class reiciver extends BroadcastReceiver {
             notificationManagerCompat.notify(notificationid,builder.build());
         }
     }
-
-
 }
