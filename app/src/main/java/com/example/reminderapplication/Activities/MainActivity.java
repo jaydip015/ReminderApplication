@@ -92,12 +92,19 @@ public class MainActivity extends AppCompatActivity {
             int position=viewHolder.getAdapterPosition();
             entity model=Data.get(position);
             Log.d("tag", String.valueOf(model.getAid()));
-            UpdateWidget();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    UpdateWidget();
+                }
+            }).start();
             RemoveFromManager(model.getAid(),model.getReminderdetails());
+
             dao.deleteAlarm(model.getAid());
-            adapter.notifyItemRemoved(position);
             Data.remove(position);
-            adapter.notifyDataSetChanged();
+            adapter.notifyItemRemoved(position);
+
+
         }
     };
     public void  UpdateWidget(){
@@ -110,18 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        adapter.notifyDataSetChanged();
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Data=dao.getalldata();
-        adapter.notifyDataSetChanged();
-    }
 
     public void RemoveFromManager(int id,String remindername) {
         manager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
