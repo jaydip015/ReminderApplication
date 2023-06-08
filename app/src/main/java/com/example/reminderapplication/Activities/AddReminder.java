@@ -77,14 +77,18 @@ public class AddReminder extends AppCompatActivity {
         AddReminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               int id=Math.abs((int)System.currentTimeMillis());
-               dao.insertall(new entity(reminderDetails.getText().toString(),id,calendar.getTimeInMillis()));
-               setalarm(id);
-               UpdateWidget();
-               Intent intent=new Intent(com.example.reminderapplication.Activities.AddReminder.this, MainActivity.class);
-               startActivity(intent);
-               finish();
-
+                if(reminderDetails.getText() == null){
+                    Toast.makeText(AddReminder.this, "Reminder Name Must not be empty", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    int id = Math.abs((int) System.currentTimeMillis());
+                    dao.insertall(new entity(reminderDetails.getText().toString(), id, calendar.getTimeInMillis()));
+                    setalarm(id);
+                    UpdateWidget();
+                    Intent intent = new Intent(com.example.reminderapplication.Activities.AddReminder.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
 
             }
         });

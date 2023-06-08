@@ -34,7 +34,7 @@ public class reiciver extends BroadcastReceiver {
         context.startService(i);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "testing").
                 setSmallIcon(R.drawable.ic_launcher_background).
-                setContentTitle(intent.getStringExtra("notificationname")).setContentText("You have Report scheduled ").setAutoCancel(true).setDefaults(NotificationCompat.DEFAULT_ALL)
+                setContentTitle(intent.getStringExtra("notificationname")).setAutoCancel(true).setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
