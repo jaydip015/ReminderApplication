@@ -1,4 +1,4 @@
-package com.example.reminderapplication;
+package com.example.reminderapplication.Activities;
 
 
 import androidx.annotation.NonNull;
@@ -24,9 +24,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.reminderapplication.Adapter.RVAdapter;
+import com.example.reminderapplication.AppWidget;
+import com.example.reminderapplication.R;
 import com.example.reminderapplication.RDB.AppDb;
 import com.example.reminderapplication.RDB.DAO;
 import com.example.reminderapplication.RDB.entity;
+import com.example.reminderapplication.reiciver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

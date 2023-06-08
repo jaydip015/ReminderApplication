@@ -1,35 +1,30 @@
-package com.example.reminderapplication;
-
-import static com.example.reminderapplication.AppWidget.ACTION_REFRESH;
+package com.example.reminderapplication.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
-import android.app.DatePickerDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.TimePickerDialog;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.RemoteViews;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.reminderapplication.AppWidget;
+import com.example.reminderapplication.R;
 import com.example.reminderapplication.RDB.AppDb;
 import com.example.reminderapplication.RDB.DAO;
 import com.example.reminderapplication.RDB.entity;
+import com.example.reminderapplication.reiciver;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
@@ -86,7 +81,7 @@ public class AddReminder extends AppCompatActivity {
                dao.insertall(new entity(reminderDetails.getText().toString(),id,calendar.getTimeInMillis()));
                setalarm(id);
                UpdateWidget();
-               Intent intent=new Intent(com.example.reminderapplication.AddReminder.this,MainActivity.class);
+               Intent intent=new Intent(com.example.reminderapplication.Activities.AddReminder.this, MainActivity.class);
                startActivity(intent);
                finish();
 

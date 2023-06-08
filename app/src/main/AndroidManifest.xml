@@ -33,10 +33,10 @@
         </receiver>
 
         <service
-            android:name=".CompleteReminder"
+            android:name=".Servicies.CompleteReminder"
             android:exported="false" />
 
-        <service android:name=".AdapterServiceFWidget"
+        <service android:name=".Servicies.AdapterServiceFWidget"
             android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS"/>
         <receiver
@@ -48,10 +48,10 @@
         </receiver>
 
         <activity
-            android:name=".AddReminder"
+            android:name=".Activities.AddReminder"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true"
             android:launchMode="singleTop">
             <intent-filter>

@@ -1,4 +1,4 @@
-package com.example.reminderapplication;
+package com.example.reminderapplication.Servicies;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import com.example.reminderapplication.R;
 import com.example.reminderapplication.RDB.AppDb;
 import com.example.reminderapplication.RDB.DAO;
 
@@ -51,7 +52,7 @@ public  class AdapterServiceFWidget extends RemoteViewsService {
 
         @Override
         public RemoteViews getViewAt(int i) {
-            RemoteViews views=new RemoteViews(context.getPackageName(),R.layout.card_view_widget);
+            RemoteViews views=new RemoteViews(context.getPackageName(), R.layout.card_view_widget);
             views.setTextViewText(R.id.widget_tv,data[i]);
             return views;
         }

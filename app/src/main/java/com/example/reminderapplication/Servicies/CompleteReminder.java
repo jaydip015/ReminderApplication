@@ -1,14 +1,15 @@
-package com.example.reminderapplication;
+package com.example.reminderapplication.Servicies;
 
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.IBinder;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.reminderapplication.AppWidget;
+import com.example.reminderapplication.Activities.MainActivity;
 import com.example.reminderapplication.RDB.AppDb;
 import com.example.reminderapplication.RDB.DAO;
 

@@ -8,6 +8,8 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import com.example.reminderapplication.Servicies.AdapterServiceFWidget;
+
 /**
  * Implementation of App Widget functionality.
  */
